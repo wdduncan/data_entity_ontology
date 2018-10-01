@@ -19,14 +19,14 @@ java -jar ./robot.jar merge \
    
 # # add date to IRI version; e.g.: http://purl.obolibrary.org/obo/2018-06-05/data-source-ontology.owl
 java -jar ./robot.jar annotate \
-  --input data_entity_ontology_merged.owl \
+  --input data_entity_merged.owl \
   --ontology-iri "http://purl.roswellpark.org/ontology/data_entity.owl" \
   --version-iri "http://purl.roswellpark.org/ontology/`date '+%Y-%m-%d'`/data_entity.owl" \
   --output data_entity_annotated.owl
 
 # run reasoner on the ontology and add inferred axioms to final output
 java -jar ./robot.jar reason \
-	--input data_entity_ontology_annotated.owl \
+	--input data_entity_annotated.owl \
   --reasoner HermiT \
   --annotate-inferred-axioms true \
   --output data_entity.owl
