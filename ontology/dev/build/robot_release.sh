@@ -12,16 +12,16 @@ cp ../imports/*import.owl .
 
 # merge owl files
 java -jar ./robot.jar merge \
+  --collapse-import-closure true \
   --inputs "*.owl" \
   --include-annotations true \
-  --collapse-import-closure true \
   --output data_entity_merged.owl
    
 # # add date to IRI version; e.g.: http://purl.obolibrary.org/obo/2018-06-05/data-source-ontology.owl
 java -jar ./robot.jar annotate \
   --input data_entity_merged.owl \
-  --ontology-iri "http://purl.roswellpark.org/ontology/data_entity.owl" \
-  --version-iri "http://purl.roswellpark.org/ontology/`date '+%Y-%m-%d'`/data_entity.owl" \
+  --ontology-iri "http://data_entity_ontology/data_entity.owl" \
+  --version-iri "http://data_entity_ontology/`date '+%Y-%m-%d'`/data_entity.owl" \
   --output data_entity_annotated.owl
 
 # run reasoner on the ontology and add inferred axioms to final output
